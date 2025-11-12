@@ -19,24 +19,38 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="KNOWLEDGE SHARING">
-<meta property="og:type" content="website">
-<meta property="og:title" content="linmengchio&#39;s blog">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="description" content="Process Synchronization 6.1 Conceptbackground  : 由於在多進程環境中存在需要互斥訪問的「共享資源」和「共享數據」，為了避免「數據不一致性」的問題，必須引入「進程同步」機制來保證進程的有序執行。 –&gt; Bounded-Buffer Problem（producer and consumer problem） Race condition（競爭條件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CH6--Process Synchronization">
+<meta property="og:url" content="http://example.com/2025/11/12/OperatorSystem/CH6/index.html">
 <meta property="og:site_name" content="linmengchio&#39;s blog">
-<meta property="og:description" content="KNOWLEDGE SHARING">
+<meta property="og:description" content="Process Synchronization 6.1 Conceptbackground  : 由於在多進程環境中存在需要互斥訪問的「共享資源」和「共享數據」，為了避免「數據不一致性」的問題，必須引入「進程同步」機制來保證進程的有序執行。 –&gt; Bounded-Buffer Problem（producer and consumer problem） Race condition（競爭條件">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2025/11/12/OperatorSystem/CH6/1.jpg">
+<meta property="og:image" content="http://example.com/2025/11/12/OperatorSystem/CH6/2.jpg">
+<meta property="og:image" content="http://example.com/2025/11/12/OperatorSystem/CH6/3.png">
+<meta property="og:image" content="http://example.com/2025/11/12/OperatorSystem/CH6/4.png">
+<meta property="og:image" content="http://example.com/2025/11/12/OperatorSystem/CH6/5.png">
+<meta property="og:image" content="http://example.com/2025/11/12/OperatorSystem/CH6/6.png">
+<meta property="og:image" content="http://example.com/2025/11/12/OperatorSystem/CH6/7.png">
+<meta property="og:image" content="http://example.com/2025/11/12/OperatorSystem/CH6/8.png">
+<meta property="og:image" content="http://example.com/2025/11/12/OperatorSystem/CH6/9.png">
+<meta property="og:image" content="http://example.com/2025/11/12/OperatorSystem/CH6/10.png">
+<meta property="article:published_time" content="2025-11-12T08:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-12T08:05:32.724Z">
 <meta property="article:author" content="linmengchio">
+<meta property="article:tag" content="junior_fall">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2025/11/12/OperatorSystem/CH6/1.jpg">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2025/11/12/OperatorSystem/CH6/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/11/12/OperatorSystem/CH6/","path":"2025/11/12/OperatorSystem/CH6/","title":"CH6--Process Synchronization"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>linmengchio's blog</title>
+<title>CH6--Process Synchronization | linmengchio's blog</title>
   
 
 
@@ -83,7 +97,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">linmengchio's blog</h1>
+      <p class="site-title">linmengchio's blog</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">stay hungry stay foolish</p>
@@ -106,7 +120,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -119,6 +133,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Process-Synchronization"><span class="nav-number">1.</span> <span class="nav-text">Process Synchronization</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-Concept"><span class="nav-number">1.1.</span> <span class="nav-text">6.1 Concept</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-Critical-Section-Problem%EF%BC%88%E8%87%A8%E7%95%8C%E8%B3%87%E6%BA%90%E5%95%8F%E9%A1%8C%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">6.2 Critical-Section Problem（臨界資源問題）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-%E7%94%A8%E6%96%BC%E8%A7%A3%E5%86%B3%E8%87%A8%E7%95%8C%E8%B3%87%E6%BA%90%E5%95%8F%E9%A1%8C%E7%9A%84%E7%AE%97%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">6.3 用於解决臨界資源問題的算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-Semaphores"><span class="nav-number">1.4.</span> <span class="nav-text">6.4 Semaphores</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Definition"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Semaphore-features"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. Semaphore features</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BF%A1%E8%99%9F%E9%87%8F%E7%9A%84%E4%B8%89%E7%A8%AE%E7%94%A8%E6%B3%95"><span class="nav-number">1.4.3.</span> <span class="nav-text">3. 信號量的三種用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-deadlock"><span class="nav-number">1.4.4.</span> <span class="nav-text">4. deadlock</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-5-Classical-Problem-of-Synchronization"><span class="nav-number">1.5.</span> <span class="nav-text">6.5 Classical Problem of Synchronization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Bounded-Buffer-Problem"><span class="nav-number">1.5.1.</span> <span class="nav-text">1. Bounded Buffer Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Readers-Writers-Problem"><span class="nav-number">1.5.2.</span> <span class="nav-text">2. Readers Writers Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Dining-Philosophers-Problem"><span class="nav-number">1.5.3.</span> <span class="nav-text">3. Dining Philosophers Problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Sleeping-Barber-Problem"><span class="nav-number">1.5.4.</span> <span class="nav-text">4. Sleeping Barber Problem</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-6-Monitor%EF%BC%88%E7%AE%A1%E7%A8%8B%EF%BC%89"><span class="nav-number">1.6.</span> <span class="nav-text">6.6 Monitor（管程）</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -158,543 +173,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/11/12/OperatorSystem/CH2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="linmengchio">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="linmengchio's blog">
-      <meta itemprop="description" content="KNOWLEDGE SHARING">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | linmengchio's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/11/12/OperatorSystem/CH2/" class="post-title-link" itemprop="url">CH2--OS Concept</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2025-11-12 16:00:00 / Modified: 16:03:35" itemprop="dateCreated datePublished" datetime="2025-11-12T16:00:00+08:00">2025-11-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/OperatorSystem/" itemprop="url" rel="index"><span itemprop="name">OperatorSystem</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="OS-Concept"><a href="#OS-Concept" class="headerlink" title="OS Concept"></a>OS Concept</h2><hr>
-<h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>OS is the management of system resource, is the most basic system software.</p>
-<h3 id="Feature"><a href="#Feature" class="headerlink" title="Feature"></a>Feature</h3><ol>
-<li>Concurrency –&gt; sequential</li>
-<li>Shared resource</li>
-<li>virtual</li>
-<li>asynchronous</li>
-</ol>
-<h3 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h3><ol>
-<li>GUI</li>
-<li>CLI</li>
-</ol>
-<h3 id="Structure"><a href="#Structure" class="headerlink" title="Structure"></a>Structure</h3><ol>
-<li>Multiprogramming</li>
-</ol>
-<ul>
-<li>keep system busy</li>
-<li>job sceduling</li>
-</ul>
-<ol start="2">
-<li>Time-Sharing</li>
-</ol>
-<ul>
-<li>every process has dispensed a time fragment</li>
-</ul>
-<h3 id="Operation"><a href="#Operation" class="headerlink" title="Operation"></a>Operation</h3><ol>
-<li>interuupt</li>
-</ol>
-<ul>
-<li><p>Hardware:</p>
-<ul>
-<li>hardware interrupt</li>
-</ul>
-</li>
-<li><p>Software:</p>
-<ul>
-<li>trap</li>
-<li>exception</li>
-<li>System call</li>
-</ul>
-</li>
-</ul>
-<ol start="2">
-<li>Dual-mode : switch between kernal mode and user mode</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/11/12/OperatorSystem/CH3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="linmengchio">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="linmengchio's blog">
-      <meta itemprop="description" content="KNOWLEDGE SHARING">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | linmengchio's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/11/12/OperatorSystem/CH3/" class="post-title-link" itemprop="url">CH3--Process</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2025-11-12 16:00:00 / Modified: 16:03:22" itemprop="dateCreated datePublished" datetime="2025-11-12T16:00:00+08:00">2025-11-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/OperatorSystem/" itemprop="url" rel="index"><span itemprop="name">OperatorSystem</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h1><hr>
-<h2 id="1-Definition"><a href="#1-Definition" class="headerlink" title="1. Definition"></a>1. Definition</h2><p>Process is a running program, it is dynamic.</p>
-<p><em>The smallest unit of resource allocation.</em></p>
-<p><em>Att:</em></p>
-<ul>
-<li>the execution of process must follow by sequence.</li>
-<li>process entity &#x3D; PCB + code segment + data</li>
-</ul>
-<p>PCB is the unique identification of Process, if the process was killed, the PCB also killed.</p>
-<h2 id="2-Process-switch"><a href="#2-Process-switch" class="headerlink" title="2. Process switch"></a>2. Process switch</h2><img src="./CH3-1.png" style="zoom:20%;" />
-
-<p>context switch: save the current process into PCB and reload a process</p>
-<h2 id="3-States-of-Process"><a href="#3-States-of-Process" class="headerlink" title="3. States of Process"></a>3. States of Process</h2><ol>
-<li>new : the process is being created </li>
-<li>ready : the process has distributed resouces and waiting the CPU distributed.</li>
-<li>running : executing</li>
-<li>waiting : event occur</li>
-<li>terminated : finished process</li>
-</ol>
-<img src="./CH3-2.png" style="zoom:25%;" />
-
-
-
-
-
-<h2 id="4-Process-scheduling-–-maximum-CPU-utilization"><a href="#4-Process-scheduling-–-maximum-CPU-utilization" class="headerlink" title="4. Process scheduling – maximum CPU utilization"></a>4. Process scheduling – maximum CPU utilization</h2><p>preserve 3 queue</p>
-<ol>
-<li>job queue</li>
-<li>device queue</li>
-<li>ready queue</li>
-</ol>
-<p> <em><strong>Multiple programming degree</strong></em> : the maxmium numbers of process that was admitted in memory</p>
-<p> ( ready+job+device )</p>
-<p><strong>Long Term scheduler</strong> : LTS decide who can put into the ready queue from job queue</p>
-<p>When $M \lt MMPD$ it work</p>
-<p>$M &#x3D; m + ready_{queue} + device_{queue}$</p>
-<p><em><strong>m</strong> is the process number that are running on the CPU</em></p>
-<p><strong>Short Term scheduler</strong> : STS decide who can put into CPU from ready queue when CPU is leisurely</p>
-<p>When <em>CPU is leisurely</em> it work</p>
-<img src="./CH3-3.png" style="zoom:20%;" />
-
-
-
-<h2 id="5-Operations-of-Process"><a href="#5-Operations-of-Process" class="headerlink" title="5. Operations of Process"></a>5. Operations of Process</h2><p><em>When Create a new process</em></p>
-<ol>
-<li>the result has <strong>two</strong> different <strong>execution mode</strong></li>
-</ol>
-<ul>
-<li>father and son concurrently execution</li>
-<li>father waiting his son finished execution</li>
-</ul>
-<ol start="2">
-<li>their has two allocated method of resources</li>
-</ol>
-<ul>
-<li>the son is the copier of father</li>
-<li>data of the son loaded into the new code segment</li>
-</ul>
-<img src="./CH3-4.png" style="zoom:15%;" />
-
-<p>fork() : create a new process, return value &#x3D; 0 signify it is a son process else if &gt; 0 that is father process.</p>
-<p>wait() :  father process is waiting his son process finished, it will return state and pid (son process).</p>
-<p>exec() : loading new data into the memory</p>
-<p>abort() : father kill the son process</p>
-<p><em>The States of son process</em></p>
-<ul>
-<li>Zombie : son process call exit() killed itself, but the father process has not call wait() before.</li>
-<li>Orphan : the father has not call wait() before it killed itself</li>
-</ul>
-<h2 id="6-Interprocess-Communication-IPC"><a href="#6-Interprocess-Communication-IPC" class="headerlink" title="6. Interprocess Communication (IPC)"></a>6. Interprocess Communication (IPC)</h2><p><em><strong>Two Models</strong></em></p>
-<ol>
-<li>Shared memory : work in <strong>user mode</strong>.</li>
-</ol>
-<ul>
-<li>OS distribute a special shared area for every process to use, every can write or read in the area.</li>
-<li>they used the area to communicate</li>
-</ul>
-<ol start="2">
-<li>Message passing : work in <strong>kernal mode</strong>.</li>
-</ol>
-<ul>
-<li>OS must provide <em><strong>send()</strong></em> and <em><strong>receive()</strong></em>  methods for every process to communicate.</li>
-<li>direct or undirect, undirect should use <em><strong>mailbox</strong></em>.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/11/12/OperatorSystem/CH4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="linmengchio">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="linmengchio's blog">
-      <meta itemprop="description" content="KNOWLEDGE SHARING">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | linmengchio's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/11/12/OperatorSystem/CH4/" class="post-title-link" itemprop="url">CH3--Thread</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2025-11-12 16:00:00 / Modified: 16:04:12" itemprop="dateCreated datePublished" datetime="2025-11-12T16:00:00+08:00">2025-11-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/OperatorSystem/" itemprop="url" rel="index"><span itemprop="name">OperatorSystem</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Thread"><a href="#Thread" class="headerlink" title="Thread"></a>Thread</h1><hr>
-<h2 id="1-Definition"><a href="#1-Definition" class="headerlink" title="1. Definition"></a>1. Definition</h2><p>Thread is a smallest unit of CPU scheduling.</p>
-<h2 id="2-MultiThread-Model"><a href="#2-MultiThread-Model" class="headerlink" title="2. MultiThread Model"></a>2. MultiThread Model</h2><ul>
-<li>One to one : one user thread to one kernel thread, never mutual block.</li>
-<li>many to one : many user thread to one kernal thread, will mutual block.</li>
-<li>many to many : performance very well, but it is difficult to realize.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/11/12/OperatorSystem/CH5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="linmengchio">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="linmengchio's blog">
-      <meta itemprop="description" content="KNOWLEDGE SHARING">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | linmengchio's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/11/12/OperatorSystem/CH5/" class="post-title-link" itemprop="url">CH5--CPU scheduling</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2025-11-12 16:00:00 / Modified: 16:04:57" itemprop="dateCreated datePublished" datetime="2025-11-12T16:00:00+08:00">2025-11-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/OperatorSystem/" itemprop="url" rel="index"><span itemprop="name">OperatorSystem</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="CPU-scheduling"><a href="#CPU-scheduling" class="headerlink" title="CPU scheduling"></a>CPU scheduling</h1><hr>
-<h2 id="1-Definition"><a href="#1-Definition" class="headerlink" title="1. Definition"></a>1. Definition</h2><p>To avoid the monopoly of the CPU by a single process, CPU scheduling is necessary.</p>
-<p>CPU scheduling include:</p>
-<ul>
-<li>Scheduler : Select a process from the ready queue to load into memory.</li>
-<li>Dispatcher : it is used to pass CPU control to the process selected by the scheduler.</li>
-</ul>
-<p>CPU scheduling types : </p>
-<ul>
-<li>Preemptive</li>
-<li>Non-Preemptive</li>
-</ul>
-<h2 id="2-Scheduling-criteria"><a href="#2-Scheduling-criteria" class="headerlink" title="2. Scheduling criteria"></a>2. Scheduling criteria</h2><ul>
-<li>rate of CPU utilization : $\frac{user_{process} + complie_{time}}{T} * 100%$</li>
-<li>Throughtout : finished process numbers divied by all time.</li>
-<li>Turnarround time : a process lifecycle</li>
-<li>waiting time : the time of process hasn’t distributed CPU (in ready queue), don’t include IO</li>
-<li>response time : time of the process request and get response.</li>
-</ul>
-<h2 id="3-Scheduling-Algorithm"><a href="#3-Scheduling-Algorithm" class="headerlink" title="3. Scheduling Algorithm"></a>3. Scheduling Algorithm</h2><ol>
-<li><strong>FCFS</strong></li>
-</ol>
-<ul>
-<li>first come first handle. </li>
-<li>Non-preemptive</li>
-</ul>
-<ol start="2">
-<li><strong>SJF</strong></li>
-</ol>
-<ul>
-<li>always distribute CPU to a process which has a smallest burst.</li>
-<li>preemptive(SRTF) or Non-preemptive(SJF)</li>
-</ul>
-<ol start="3">
-<li><strong>Priority Scheduling</strong></li>
-</ol>
-<ul>
-<li>distribute CPU to a process which has smaller priority number.</li>
-<li>always preemptive, but Non-preemptive also ok.</li>
-<li>use aging to solute starvation problem.</li>
-</ul>
-<ol start="4">
-<li><strong>Round Robin</strong></li>
-</ol>
-<ul>
-<li><p>everytime, Time quantum will distribute for the first process in the ready queue.</p>
-</li>
-<li><p>it is preemptive when time quantum is over</p>
-</li>
-</ul>
-<ol start="5">
-<li><strong>MLQ</strong></li>
-</ol>
-<img src="./CH5-1.png" style="zoom:15%;" />
-
-
-
-<ol start="6">
-<li><strong>MLFQ</strong></li>
-</ol>
-<ul>
-<li>Queue follow by queue, first queue has the most priority.</li>
-</ul>
-<img src="./CH5-2.png" style="zoom:15%;" />
-
-<p>if a process can not finish in the first queue, it would put to the second queue.</p>
-<p>Different queues can implement different scheduling algorithms.</p>
-<h2 id="4-Multiprocessor-scheduling"><a href="#4-Multiprocessor-scheduling" class="headerlink" title="4. Multiprocessor scheduling"></a>4. Multiprocessor scheduling</h2><img src="./CH5-3.png" style="zoom:25%;" />
-
-
-
-<h2 id="5-Real-Time-System"><a href="#5-Real-Time-System" class="headerlink" title="5. Real-Time-System"></a>5. Real-Time-System</h2><p>is a computer system, it must react event when the deadline is coming.</p>
-<p><em>Two type :</em></p>
-<ul>
-<li>Hardware real time : system promise it can finish the task before the deadline.</li>
-<li>Software real time : system don’t promise it can finish.</li>
-</ul>
-<img src="./CH5-4.png" style="zoom:25%;" />
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2025/11/12/OperatorSystem/CH6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -708,13 +197,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | linmengchio's blog">
+      <meta itemprop="name" content="CH6--Process Synchronization | linmengchio's blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/11/12/OperatorSystem/CH6/" class="post-title-link" itemprop="url">CH6--Process Synchronization</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          CH6--Process Synchronization
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -746,8 +235,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Process-Synchronization"><a href="#Process-Synchronization" class="headerlink" title="Process Synchronization"></a>Process Synchronization</h1><hr>
+    <div class="post-body" itemprop="articleBody"><h1 id="Process-Synchronization"><a href="#Process-Synchronization" class="headerlink" title="Process Synchronization"></a>Process Synchronization</h1><hr>
 <h2 id="6-1-Concept"><a href="#6-1-Concept" class="headerlink" title="6.1 Concept"></a>6.1 Concept</h2><p><em>background</em>  : 由於在多進程環境中存在需要互斥訪問的「共享資源」和「共享數據」，為了避免「數據不一致性」的問題，必須引入「進程同步」機制來保證進程的有序執行。</p>
 <p>–&gt; <strong>Bounded-Buffer Problem</strong>（producer and consumer problem）</p>
 <p><em><strong>Race condition</strong></em>（競爭條件） ：多進程并發訪問共享數據且數據的結果由執行順序决定</p>
@@ -907,7 +395,6 @@
 </ul>
 <img src="./10.png" alt="10" style="zoom:25%;" />
 
-      
     </div>
 
     
@@ -915,93 +402,28 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-tags">
+              <a href="/tags/junior-fall/" rel="tag"># junior_fall</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/11/12/hello-world/" rel="prev" title="Hello World">
+                  <i class="fa fa-angle-left"></i> Hello World
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/11/12/OperatorSystem/CH5/" rel="next" title="CH5--CPU scheduling">
+                  CH5--CPU scheduling <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/11/12/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="linmengchio">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="linmengchio's blog">
-      <meta itemprop="description" content="KNOWLEDGE SHARING">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | linmengchio's blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/11/12/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2025-11-12 15:34:10 / Modified: 15:36:24" itemprop="dateCreated datePublished" datetime="2025-11-12T15:34:10+08:00">2025-11-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 

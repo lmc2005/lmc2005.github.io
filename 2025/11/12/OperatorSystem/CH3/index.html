@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Process 1. DefinitionProcess is a running program, it is dynamic. The smallest unit of resource allocation. Att:  the execution of process must follow by sequence. process entity &#x3D; PCB + code seg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CH3--Process">
+<meta property="og:url" content="http://example.com/2025/11/12/OperatorSystem/CH3/index.html">
+<meta property="og:site_name" content="linmengchio&#39;s blog">
+<meta property="og:description" content="Process 1. DefinitionProcess is a running program, it is dynamic. The smallest unit of resource allocation. Att:  the execution of process must follow by sequence. process entity &#x3D; PCB + code seg">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2025/11/12/OperatorSystem/CH3/CH3-1.png">
+<meta property="og:image" content="http://example.com/2025/11/12/OperatorSystem/CH3/CH3-2.png">
+<meta property="og:image" content="http://example.com/2025/11/12/OperatorSystem/CH3/CH3-3.png">
+<meta property="og:image" content="http://example.com/2025/11/12/OperatorSystem/CH3/CH3-4.png">
+<meta property="article:published_time" content="2025-11-12T08:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-12T08:03:22.947Z">
+<meta property="article:author" content="linmengchio">
+<meta property="article:tag" content="junior_fall">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2025/11/12/OperatorSystem/CH3/CH3-1.png">
+
+
+<link rel="canonical" href="http://example.com/2025/11/12/OperatorSystem/CH3/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2025/11/12/OperatorSystem/CH3/","path":"2025/11/12/OperatorSystem/CH3/","title":"CH3--Process"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CH3--Process | linmengchio's blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">linmengchio's blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">stay hungry stay foolish</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Process"><span class="nav-number">1.</span> <span class="nav-text">Process</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Definition"><span class="nav-number">1.1.</span> <span class="nav-text">1. Definition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Process-switch"><span class="nav-number">1.2.</span> <span class="nav-text">2. Process switch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-States-of-Process"><span class="nav-number">1.3.</span> <span class="nav-text">3. States of Process</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Process-scheduling-%E2%80%93-maximum-CPU-utilization"><span class="nav-number">1.4.</span> <span class="nav-text">4. Process scheduling – maximum CPU utilization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Operations-of-Process"><span class="nav-number">1.5.</span> <span class="nav-text">5. Operations of Process</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-Interprocess-Communication-IPC"><span class="nav-number">1.6.</span> <span class="nav-text">6. Interprocess Communication (IPC)</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="linmengchio"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">linmengchio</p>
+  <div class="site-description" itemprop="description">KNOWLEDGE SHARING</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/11/12/OperatorSystem/CH3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="linmengchio">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="linmengchio's blog">
+      <meta itemprop="description" content="KNOWLEDGE SHARING">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="CH3--Process | linmengchio's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CH3--Process
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2025-11-12 16:00:00 / Modified: 16:03:22" itemprop="dateCreated datePublished" datetime="2025-11-12T16:00:00+08:00">2025-11-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/OperatorSystem/" itemprop="url" rel="index"><span itemprop="name">OperatorSystem</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h1><hr>
+<h2 id="1-Definition"><a href="#1-Definition" class="headerlink" title="1. Definition"></a>1. Definition</h2><p>Process is a running program, it is dynamic.</p>
+<p><em>The smallest unit of resource allocation.</em></p>
+<p><em>Att:</em></p>
+<ul>
+<li>the execution of process must follow by sequence.</li>
+<li>process entity &#x3D; PCB + code segment + data</li>
+</ul>
+<p>PCB is the unique identification of Process, if the process was killed, the PCB also killed.</p>
+<h2 id="2-Process-switch"><a href="#2-Process-switch" class="headerlink" title="2. Process switch"></a>2. Process switch</h2><img src="./CH3-1.png" style="zoom:20%;" />
+
+<p>context switch: save the current process into PCB and reload a process</p>
+<h2 id="3-States-of-Process"><a href="#3-States-of-Process" class="headerlink" title="3. States of Process"></a>3. States of Process</h2><ol>
+<li>new : the process is being created </li>
+<li>ready : the process has distributed resouces and waiting the CPU distributed.</li>
+<li>running : executing</li>
+<li>waiting : event occur</li>
+<li>terminated : finished process</li>
+</ol>
+<img src="./CH3-2.png" style="zoom:25%;" />
+
+
+
+
+
+<h2 id="4-Process-scheduling-–-maximum-CPU-utilization"><a href="#4-Process-scheduling-–-maximum-CPU-utilization" class="headerlink" title="4. Process scheduling – maximum CPU utilization"></a>4. Process scheduling – maximum CPU utilization</h2><p>preserve 3 queue</p>
+<ol>
+<li>job queue</li>
+<li>device queue</li>
+<li>ready queue</li>
+</ol>
+<p> <em><strong>Multiple programming degree</strong></em> : the maxmium numbers of process that was admitted in memory</p>
+<p> ( ready+job+device )</p>
+<p><strong>Long Term scheduler</strong> : LTS decide who can put into the ready queue from job queue</p>
+<p>When $M \lt MMPD$ it work</p>
+<p>$M &#x3D; m + ready_{queue} + device_{queue}$</p>
+<p><em><strong>m</strong> is the process number that are running on the CPU</em></p>
+<p><strong>Short Term scheduler</strong> : STS decide who can put into CPU from ready queue when CPU is leisurely</p>
+<p>When <em>CPU is leisurely</em> it work</p>
+<img src="./CH3-3.png" style="zoom:20%;" />
+
+
+
+<h2 id="5-Operations-of-Process"><a href="#5-Operations-of-Process" class="headerlink" title="5. Operations of Process"></a>5. Operations of Process</h2><p><em>When Create a new process</em></p>
+<ol>
+<li>the result has <strong>two</strong> different <strong>execution mode</strong></li>
+</ol>
+<ul>
+<li>father and son concurrently execution</li>
+<li>father waiting his son finished execution</li>
+</ul>
+<ol start="2">
+<li>their has two allocated method of resources</li>
+</ol>
+<ul>
+<li>the son is the copier of father</li>
+<li>data of the son loaded into the new code segment</li>
+</ul>
+<img src="./CH3-4.png" style="zoom:15%;" />
+
+<p>fork() : create a new process, return value &#x3D; 0 signify it is a son process else if &gt; 0 that is father process.</p>
+<p>wait() :  father process is waiting his son process finished, it will return state and pid (son process).</p>
+<p>exec() : loading new data into the memory</p>
+<p>abort() : father kill the son process</p>
+<p><em>The States of son process</em></p>
+<ul>
+<li>Zombie : son process call exit() killed itself, but the father process has not call wait() before.</li>
+<li>Orphan : the father has not call wait() before it killed itself</li>
+</ul>
+<h2 id="6-Interprocess-Communication-IPC"><a href="#6-Interprocess-Communication-IPC" class="headerlink" title="6. Interprocess Communication (IPC)"></a>6. Interprocess Communication (IPC)</h2><p><em><strong>Two Models</strong></em></p>
+<ol>
+<li>Shared memory : work in <strong>user mode</strong>.</li>
+</ol>
+<ul>
+<li>OS distribute a special shared area for every process to use, every can write or read in the area.</li>
+<li>they used the area to communicate</li>
+</ul>
+<ol start="2">
+<li>Message passing : work in <strong>kernal mode</strong>.</li>
+</ol>
+<ul>
+<li>OS must provide <em><strong>send()</strong></em> and <em><strong>receive()</strong></em>  methods for every process to communicate.</li>
+<li>direct or undirect, undirect should use <em><strong>mailbox</strong></em>.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/junior-fall/" rel="tag"># junior_fall</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/11/12/OperatorSystem/CH4/" rel="prev" title="CH3--Thread">
+                  <i class="fa fa-angle-left"></i> CH3--Thread
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/11/12/OperatorSystem/CH2/" rel="next" title="CH2--OS Concept">
+                  CH2--OS Concept <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">linmengchio</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
