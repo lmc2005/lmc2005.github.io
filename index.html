@@ -198,7 +198,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2025-11-15 00:23:00 / Modified: 00:31:32" itemprop="dateCreated datePublished" datetime="2025-11-15T00:23:00+08:00">2025-11-15</time>
+      <time title="Created: 2025-11-15 00:23:00 / Modified: 00:34:23" itemprop="dateCreated datePublished" datetime="2025-11-15T00:23:00+08:00">2025-11-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -220,38 +220,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="使用mermaid來繪製圖表"><a href="#使用mermaid來繪製圖表" class="headerlink" title="使用mermaid來繪製圖表"></a>使用mermaid來繪製圖表</h2><p>我們使用<strong>mermaid</strong>語言來繪製圖表，當今大模型給你畫的圖也是基於該語言生成的。</p>
-<p><em><strong>mermaid基礎語法</strong></em></p>
-<ol>
-<li>Flowchart</li>
-</ol>
-<ul>
-<li>初始行定義: 圖表類型 方向 （方向的意思是你的流程是從上至下TD或左至右LR）</li>
-<li>後續行縮進之後給每个A、B、C…來block的內容命名，相當於把內容轉換成A、B…變量，後續都使用變量來規划流程</li>
-<li>两个變量間使用 –&gt; 來相連，變量間都是M：N關係的，即一个變量可指向多个變量，多个也可指向一个</li>
-</ul>
-<p><img src="/./1.png" alt="1"></p>
-<p>mermaid代碼如下，通過使用不同的{},[],()組合可得到不同的邊框形狀</p>
-<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">flowchart TD</span><br><span class="line"><span class="code">	A[one]</span></span><br><span class="line"><span class="code">	B[two]</span></span><br><span class="line"><span class="code">	C(three)</span></span><br><span class="line"><span class="code">	D((four))</span></span><br><span class="line"><span class="code">	E&#123;five&#125;</span></span><br><span class="line"><span class="code">	F[[six]]</span></span><br><span class="line"><span class="code">	G[(seven)]</span></span><br><span class="line"><span class="code">	H([eight])</span></span><br><span class="line"><span class="code">	A--&gt;B</span></span><br><span class="line"><span class="code">	B--&gt;C</span></span><br><span class="line"><span class="code">	C--&gt;D</span></span><br><span class="line"><span class="code">	E--&gt;D</span></span><br><span class="line"><span class="code">	F--&gt;D</span></span><br><span class="line"><span class="code">	D--&gt;G</span></span><br><span class="line"><span class="code">	D--&gt;H</span></span><br></pre></td></tr></table></figure>
-
-
-
-<ol start="2">
-<li>Sequence Diagram</li>
-</ol>
-<ul>
-<li>定義participant,   participant variable as content</li>
-<li>-&gt;&gt; 實線箭頭</li>
-<li>–&gt;&gt; 虛線箭頭（用於respond）</li>
-<li>activate 激活狀態，即帶一个小方框</li>
-<li>deactivate</li>
-<li>alt else end畫虛線框</li>
-</ul>
-<p><img src="/./2.png" alt="2"></p>
-<p>代碼如下：</p>
-<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line"><span class="code">    participant User as 用戶</span></span><br><span class="line"><span class="code">    participant API as 伺服器API</span></span><br><span class="line"><span class="code">    participant DB as 資料庫</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">    User-&gt;&gt;API: POST /data</span></span><br><span class="line"><span class="code">    activate API</span></span><br><span class="line"><span class="code">    API-&gt;&gt;DB: 查詢數據</span></span><br><span class="line"><span class="code">    activate DB</span></span><br><span class="line"><span class="code">    DB--&gt;&gt;API: 返回記錄</span></span><br><span class="line"><span class="code">    deactivate DB</span></span><br><span class="line"><span class="code">    alt 數據有效</span></span><br><span class="line"><span class="code">        API--&gt;&gt;User: 200 OK</span></span><br><span class="line"><span class="code">    else 數據無效</span></span><br><span class="line"><span class="code">        API--&gt;&gt;User: 404 Not Found</span></span><br><span class="line"><span class="code">    end</span></span><br><span class="line"><span class="code">    deactivate API</span></span><br></pre></td></tr></table></figure>
-
-
+          <p>Use mermaid to create different chart.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/11/15/chart/">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
