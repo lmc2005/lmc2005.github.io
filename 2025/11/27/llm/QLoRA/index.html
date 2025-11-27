@@ -28,9 +28,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2025/11/27/llm/QLoRA/1.png">
 <meta property="og:image" content="http://example.com/2025/11/27/llm/QLoRA/3.png">
-<meta property="og:image" content="http://example.com/2.png">
+<meta property="og:image" content="http://example.com/2025/11/27/llm/QLoRA/2.png">
 <meta property="article:published_time" content="2025-11-27T10:42:00.000Z">
-<meta property="article:modified_time" content="2025-11-27T10:45:33.653Z">
+<meta property="article:modified_time" content="2025-11-27T10:48:47.404Z">
 <meta property="article:author" content="linmengchio">
 <meta property="article:tag" content="llm">
 <meta name="twitter:card" content="summary">
@@ -207,7 +207,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2025-11-27 18:42:00 / Modified: 18:45:33" itemprop="dateCreated datePublished" datetime="2025-11-27T18:42:00+08:00">2025-11-27</time>
+      <time title="Created: 2025-11-27 18:42:00 / Modified: 18:48:47" itemprop="dateCreated datePublished" datetime="2025-11-27T18:42:00+08:00">2025-11-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -298,7 +298,8 @@
 <li>GPU-Util 代表GPU的利用率</li>
 <li>下面的Processes代表每个進程的情況</li>
 </ul>
-<h5 id="4-3-訓練輸出解析"><a href="#4-3-訓練輸出解析" class="headerlink" title="4.3 訓練輸出解析"></a>4.3 訓練輸出解析</h5><p><img src="/./2.png"></p>
+<h5 id="4-3-訓練輸出解析"><a href="#4-3-訓練輸出解析" class="headerlink" title="4.3 訓練輸出解析"></a>4.3 訓練輸出解析</h5><img src="./2.png" style="zoom:33%;" />
+
 <ul>
 <li><code>Num examples</code>為數據集樣本總量，在<code>yaml</code>文件中可設置<code>max_examples</code>，不設置默認全集訓練</li>
 <li><code>Num Epochs</code>表示循環整个數據集的次數，即在同一數據集上訓練n次</li>
@@ -310,7 +311,7 @@
 </li>
 <li><code>Number of trainable parameters</code>為可訓練的參數量</li>
 <li><code>Total optimization steps</code>（<em><strong>Iteration</strong></em>） 為總權重更新次數，即整個訓練過程中，模型權重將被更新的總次數。<ul>
-<li>$\frac{總樣本數}{有效批次大小}$×Num Epochs</li>
+<li>$$\frac{總樣本數}{有效批次大小}$$×Num Epochs</li>
 </ul>
 </li>
 </ul>
