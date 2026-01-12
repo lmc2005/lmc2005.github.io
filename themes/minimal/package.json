@@ -1,0 +1,19 @@
+{
+  "name": "hexo-theme-minimal",
+  "version": "1.0.0",
+  "description": "A minimal, Apple-inspired Hexo theme with modern design",
+  "main": "layout/_layout.njk",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hexo",
+    "theme",
+    "minimal",
+    "blog",
+    "apple",
+    "modern"
+  ],
+  "author": "linmengchio",
+  "license": "MIT"
+}

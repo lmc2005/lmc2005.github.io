@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="{{ config.language }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% if page.title %}
+  <title>{{ page.title }} - {{ config.title }}</title>
+  {% elif config.title %}
+  <title>{{ config.title }}</title>
+  {% endif %}
+
+  {% if config.description %}
+  <meta name="description" content="{{ config.description }}">
+  {% endif %}
+  {% if config.keywords %}
+  <meta name="keywords" content="{{ config.keywords }}">
+  {% endif %}
+  {% if config.author %}
+  <meta name="author" content="{{ config.author }}">
+  {% endif %}
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <!-- Floating Particles -->
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+
+  <div class="app-container">
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <button class="mobile-menu-button" id="menuToggle">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <div class="mobile-logo">{{ config.title }}</div>
+      <div style="width: 40px;"></div>
+    </div>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      {{- partial('_partial/sidebar.njk') }}
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="content-wrapper">
+        {% block content %}{% endblock %}
+      </div>
+
+      <!-- Footer -->
+      {{- partial('_partial/footer.njk') }}
+    </main>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

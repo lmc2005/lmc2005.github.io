@@ -1,0 +1,56 @@
+{% extends '_layout.njk' %}
+
+{% block content %}
+<header class="header">
+  <h1 class="header-title">Category: {{ page.category }}</h1>
+  <p class="header-subtitle">{{ page.posts.length }} posts in total</p>
+</header>
+
+{% for post in page.posts.toArray() %}
+<article class="post-card">
+  <header class="post-card-header">
+    <h2 class="post-card-title">
+      <a href="{{ url_for(post.path) }}">{{ post.title }}</a>
+    </h2>
+  </header>
+
+  <div class="post-card-meta">
+    <div class="post-card-meta-item">
+      <span class="post-card-meta-icon">📅</span>
+      <time datetime="{{ date(post.date, 'YYYY-MM-DD') }}">
+        {{ date(post.date, 'YYYY-MM-DD') }}
+      </time>
+    </div>
+  </div>
+
+  {% if post.excerpt %}
+  <div class="post-card-excerpt">
+    {{ post.excerpt }}
+  </div>
+  {% endif %}
+</article>
+{% endfor %}
+
+<!-- Pagination -->
+{% if page.total > 1 %}
+<nav class="pagination">
+  {% if page.prev %}
+  <a href="{{ url_for(page.prev_link) }}" class="pagination-item">
+    ← 上一页
+  </a>
+  {% else %}
+  <span class="pagination-item disabled">← 上一页</span>
+  {% endif %}
+
+  <span class="pagination-item active">{{ page.current }} / {{ page.total }}</span>
+
+  {% if page.next %}
+  <a href="{{ url_for(page.next_link) }}" class="pagination-item">
+    下一页 →
+  </a>
+  {% else %}
+  <span class="pagination-item disabled">下一页 →</span>
+  {% endif %}
+</nav>
+{% endif %}
+{% endblock %}

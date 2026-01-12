@@ -1,0 +1,242 @@
+/* ========================================
+   Minimal Theme - Responsive Design
+   ======================================== */
+
+/* Tablet (≤ 1024px) */
+@media (max-width: 1024px) {
+  :root {
+    --sidebar-width: 240px;
+    --spacing-3xl: 48px;
+  }
+
+  .sidebar {
+    padding: var(--spacing-lg);
+  }
+
+  .main-content {
+    padding: var(--spacing-lg);
+  }
+
+  .post-title {
+    font-size: 32px;
+  }
+}
+
+/* Mobile (≤ 768px) */
+@media (max-width: 768px) {
+  :root {
+    --sidebar-width: 100%;
+    --spacing-lg: 20px;
+    --spacing-xl: 28px;
+    --spacing-2xl: 40px;
+  }
+
+  .app-container {
+    flex-direction: column;
+  }
+
+  /* Mobile Sidebar - Hide by default */
+  .sidebar {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    z-index: var(--z-modal);
+    width: 280px;
+    height: 100vh;
+    transition: left var(--transition-normal);
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  /* Mobile Header */
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+  }
+
+  .mobile-menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+  }
+
+  .mobile-menu-button:hover {
+    background: var(--color-bg);
+  }
+
+  .mobile-logo {
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  /* Overlay */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-normal);
+    z-index: calc(var(--z-modal) - 1);
+  }
+
+  .sidebar-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .main-content {
+    padding: var(--spacing-md);
+  }
+
+  .content-wrapper {
+    padding-top: var(--spacing-lg);
+  }
+
+  .post-card {
+    padding: var(--spacing-lg);
+  }
+
+  .post-card-title {
+    font-size: var(--font-size-h3);
+  }
+
+  .post-title {
+    font-size: 28px;
+  }
+
+  .post-content {
+    font-size: 16px;
+  }
+
+  .post-navigation {
+    grid-template-columns: 1fr;
+  }
+
+  .back-to-top {
+    bottom: var(--spacing-md);
+    right: var(--spacing-md);
+    width: 40px;
+    height: 40px;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+  }
+}
+
+/* Hide Mobile Header on Desktop */
+@media (min-width: 769px) {
+  .mobile-header {
+    display: none;
+  }
+
+  .sidebar-overlay {
+    display: none;
+  }
+}
+
+/* Small Mobile (≤ 480px) */
+@media (max-width: 480px) {
+  :root {
+    --font-size-h1: 28px;
+    --font-size-h2: 20px;
+    --font-size-h3: 18px;
+  }
+
+  .sidebar {
+    width: 100%;
+    left: -100%;
+  }
+
+  .sidebar-avatar {
+    width: 64px;
+    height: 64px;
+  }
+
+  .sidebar-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+  }
+
+  .post-card {
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .post-card-meta {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .read-more-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .post-title {
+    font-size: 24px;
+  }
+
+  .post-content h2 {
+    font-size: 24px;
+  }
+
+  .post-content h3 {
+    font-size: 20px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .sidebar,
+  .mobile-header,
+  .back-to-top,
+  .post-footer,
+  .post-share {
+    display: none;
+  }
+
+  .main-content {
+    padding: 0;
+  }
+
+  .post-content {
+    font-size: 12pt;
+  }
+
+  .post-content a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,366 @@
+/* ========================================
+   Minimal Theme - Base Styles
+   ======================================== */
+
+/* CSS Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--font-size-base);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-stack);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-md);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-semibold);
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+/* Lists */
+ul, ol {
+  margin-bottom: var(--spacing-md);
+  padding-left: var(--spacing-lg);
+}
+
+li {
+  margin-bottom: var(--spacing-xs);
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Code */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: rgba(139, 0, 0, 0.08);
+  color: #8B0000;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0;
+}
+
+/* ========================================
+   Code Block Styles for Hexo highlight.js
+   ======================================== */
+
+/* Main container - ensure it never exceeds parent */
+figure.highlight {
+  background: #282a36;
+  border: 1px solid #44475a;
+  border-radius: 12px;
+  margin: var(--spacing-lg) 0;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  /* Critical: constrain width to parent */
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Prevent hover effects from changing code block background */
+figure.highlight:hover,
+figure.highlight:hover table,
+figure.highlight:hover tbody,
+figure.highlight:hover tr,
+figure.highlight:hover td {
+  background: #282a36 !important;
+}
+
+/* Mac Window Dots - Authentic Colors */
+figure.highlight::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  width: 12px;
+  height: 12px;
+  background: #FF5F57; /* Mac Red */
+  border-radius: 50%;
+  box-shadow:
+    20px 0 0 #FEBC2E, /* Mac Yellow */
+    40px 0 0 #28C840; /* Mac Green */
+  z-index: 10;
+}
+
+/* Table layout */
+figure.highlight table {
+  margin: 0;
+  border: none;
+  background: #282a36;
+  box-shadow: none;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+figure.highlight tbody {
+  display: table;
+  width: 100%;
+  background: #282a36;
+}
+
+figure.highlight tr {
+  display: table-row;
+  background: #282a36;
+}
+
+figure.highlight tr:hover {
+  background: #282a36 !important;
+}
+
+/* Hide line numbers (gutter column) */
+figure.highlight td.gutter {
+  display: none;
+}
+
+/* Code column - take full width */
+figure.highlight td.code {
+  display: table-cell;
+  width: 100%;
+  padding: 40px var(--spacing-lg) var(--spacing-lg);
+  vertical-align: top;
+  background: #282a36;
+}
+
+figure.highlight td.code:hover {
+  background: #282a36 !important;
+}
+
+/* pre element inside code cell */
+figure.highlight pre {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas,
+                 "Courier New", monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  -webkit-overflow-scrolling: touch;
+  color: #f8f8f2;
+}
+
+/* code element */
+figure.highlight code {
+  background: transparent;
+  color: #f8f8f2;
+  padding: 0;
+  font-size: inherit;
+  white-space: pre;
+  display: block;
+  width: 100%;
+}
+
+/* Ensure code colors remain on hover */
+figure.highlight:hover code,
+figure.highlight:hover .line,
+figure.highlight:hover span {
+  color: inherit !important;
+}
+
+/* Each line */
+figure.highlight .line {
+  display: block;
+  width: 100%;
+}
+
+/* Custom scrollbar for code blocks */
+figure.highlight pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+figure.highlight pre::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+figure.highlight pre::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+figure.highlight pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Fallback for standard pre blocks (not highlight.js) */
+pre:not(figure.highlight pre) {
+  background: #282a36;
+  border: 1px solid #44475a;
+  border-radius: 12px;
+  padding: 40px var(--spacing-lg) var(--spacing-lg);
+  overflow-x: auto;
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  max-width: 100%;
+  width: 100%;
+}
+
+pre:not(figure.highlight pre)::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  width: 12px;
+  height: 12px;
+  background: #FF5F57; /* Mac Red */
+  border-radius: 50%;
+  box-shadow:
+    20px 0 0 #FEBC2E, /* Mac Yellow */
+    40px 0 0 #28C840; /* Mac Green */
+}
+
+pre:not(figure.highlight pre) code {
+  background: transparent;
+  color: #f8f8f2;
+  padding: 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  white-space: pre;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Blockquote */
+blockquote {
+  border-left: 4px solid var(--color-primary);
+  padding-left: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--spacing-lg) 0;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+th, td {
+  padding: var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+th {
+  font-weight: var(--font-weight-semibold);
+  background-color: var(--color-bg);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
+
+/* Utility Classes */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}

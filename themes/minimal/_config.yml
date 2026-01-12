@@ -1,0 +1,65 @@
+# ========================================
+# Minimal Theme Configuration
+# ========================================
+
+# Profile Settings
+profile:
+  # Avatar image (place in source/images/ or use external URL)
+  avatar: /images/avatar.png
+
+  # Social links
+  social:
+    github: https://github.com/lmc2005
+    email: mailto:your@email.com
+    # twitter: https://twitter.com/yourname
+    # linkedin: https://linkedin.com/in/yourname
+
+# Layout Settings
+layout:
+  sidebar_width: 280px
+  card_spacing: 24px
+
+# Features
+features:
+  # Show reading progress bar at top
+  reading_progress: true
+
+  # Back to top button
+  back_to_top: true
+
+  # Lazy load images
+  lazy_load: true
+
+# Menu
+menu:
+  # You can add custom menu items here
+  # - name: 关于
+  #   url: /about/
+  #   icon: ⌘
+
+# Post Settings
+post:
+  # Show excerpt on index pages
+  show_excerpt: true
+
+  # Show full post content
+  show_full_content: false
+
+  # Number of words in excerpt
+  excerpt_length: 150
+
+# Code Highlight
+code:
+  # Show line numbers
+  line_number: true
+
+  # Highlight theme (highlight.js)
+  # Available: default, atom-one-dark, github, monokai, etc.
+  theme: atom-one-dark
+
+# Analytics (optional)
+analytics:
+  # Google Analytics
+  google_analytics_id:
+  # Baidu Analytics
+  baidu_analytics_id:

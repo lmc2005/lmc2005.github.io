@@ -1,0 +1,10 @@
+{# Apple-Scholar Theme - Custom head file #}
+{# 为 LLM 学者打造的专业博客主题 #}
+
+{# 文章详情页 - 使用 post.css #}
+{% if page.layout == 'post' %}
+  <link rel="stylesheet" href="{{ url_for('/css/apple-scholar/post.css') }}">
+{# 主页面 - 使用 home.css #}
+{% elif page.type == 'index' or page.__index %}
+  <link rel="stylesheet" href="{{ url_for('/css/apple-scholar/home.css') }}">
+{% endif %}

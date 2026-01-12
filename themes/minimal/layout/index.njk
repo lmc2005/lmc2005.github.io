@@ -1,0 +1,98 @@
+{% extends '_layout.njk' %}
+
+{% block content %}
+<!-- Header -->
+<header class="header">
+  <h1 class="header-title">{{ config.title }}</h1>
+  {% if config.subtitle %}
+  <p class="header-subtitle">{{ config.subtitle }}</p>
+  {% endif %}
+</header>
+
+<!-- Post List -->
+{% if page.posts.length > 0 %}
+  {% for post in page.posts.toArray() %}
+  <article class="post-card">
+    <header class="post-card-header">
+      <h2 class="post-card-title">
+        <a href="{{ url_for(post.path) }}">{{ post.title }}</a>
+      </h2>
+    </header>
+
+    <div class="post-card-meta">
+      <div class="post-card-meta-item">
+        <span class="post-card-meta-icon">📅</span>
+        <time datetime="{{ date(post.date, 'YYYY-MM-DD') }}">
+          {{ date(post.date, 'YYYY-MM-DD') }}
+        </time>
+      </div>
+      {% if post.categories.length > 0 %}
+      <div class="post-card-meta-item">
+        <span class="post-card-meta-icon">📁</span>
+        <a href="{{ url_for(post.categories.first().path) }}">{{ post.categories.first().name }}</a>
+      </div>
+      {% endif %}
+    </div>
+
+    {% if post.excerpt %}
+    <div class="post-card-excerpt">
+      {{ post.excerpt }}
+    </div>
+    {% endif %}
+
+    {% if post.tags.length > 0 %}
+    <div class="post-card-tags">
+      {% for tag in post.tags.toArray().slice(0, 5) %}
+      <a href="{{ url_for(tag.path) }}" class="post-card-tag">#{{ tag.name }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="post-card-footer">
+      <a href="{{ url_for(post.path) }}" class="read-more-btn">
+        Read More
+      </a>
+    </div>
+  </article>
+  {% endfor %}
+
+  <!-- Pagination -->
+  {% if page.total > 1 %}
+  <nav class="pagination">
+    {% if page.prev %}
+    <a href="{{ url_for(page.prev_link) }}" class="pagination-item">
+      ← Previous
+    </a>
+    {% else %}
+    <span class="pagination-item disabled">← Previous</span>
+    {% endif %}
+
+    {% for i in range(1, page.total + 1) %}
+      {% if i === page.current %}
+      <span class="pagination-item active">{{ i }}</span>
+      {% elif i === 1 or i === page.total or (i >= page.current - 1 and i <= page.current + 1) %}
+      <a href="{% if i === 1 %}{{ url_for('/') }}{% else %}{{ url_for('/page/' + i + '/') }}{% endif %}" class="pagination-item">
+        {{ i }}
+      </a>
+      {% elif i === page.current - 2 or i === page.current + 2 %}
+      <span class="pagination-item">...</span>
+      {% endif %}
+    {% endfor %}
+
+    {% if page.next %}
+    <a href="{{ url_for(page.next_link) }}" class="pagination-item">
+      Next →
+    </a>
+    {% else %}
+    <span class="pagination-item disabled">Next →</span>
+    {% endif %}
+  </nav>
+  {% endif %}
+{% else %}
+<div class="empty-state">
+  <div class="empty-state-icon">📝</div>
+  <p class="empty-state-text">No posts yet</p>
+  <p>Create your first post to get started!</p>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,442 @@
+/*
+ * Spring Theme Adapter for Hexo Blog
+ * 将 Typora 的 spring.css 主题适配到 Hexo 博客
+ * 将 #write 选择器映射到 .post-content
+ */
+
+/* 为文章内容容器添加 spring 样式 */
+.post-content {
+  /* 应用 spring.css 的基础样式 */
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  background-color: #fefefe;
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  line-height: 1.9;
+}
+
+/* 将 #write 样式应用到 .post-content */
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  font-family: inherit !important;
+  font-style: normal;
+}
+
+.post-content h1,
+.post-content h2 {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.post-content h1 {
+  font-size: 2.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+
+.post-content h2 {
+  font-size: 2rem;
+  position: relative;
+  padding-bottom: 0rem;
+  font-weight: bold;
+  margin-bottom: 0rem;
+}
+
+.post-content h2:after {
+  content: "";
+  display: block;
+  width: 30rem;
+  height: 2.5px;
+  margin: 0.5rem auto 0;
+  background: #000000;
+  border-radius: 10px;
+  transform: scaleX(0);
+  transition: transform 0.4s ease, background 0.4s ease;
+}
+
+.post-content h2:hover:after {
+  transform: scaleX(1);
+}
+
+.post-content h3 {
+  font-size: 1.8rem;
+}
+
+.post-content h4 {
+  font-size: 1.5rem;
+}
+
+.post-content h5 {
+  font-size: 1.3rem;
+}
+
+.post-content h6 {
+  font-size: 1.2rem;
+}
+
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  position: relative;
+  margin-top: 1.0rem;
+  margin-bottom: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.post-content h3:hover,
+.post-content h4:hover,
+.post-content h5:hover,
+.post-content h6:hover {
+  transform: scale(1.01);
+}
+
+/* 段落样式 */
+.post-content p {
+  font-size: 1rem;
+  padding: 0 0.3rem;
+  transition: all 0.25s ease;
+  word-spacing: 0.1rem;
+  line-height: 1.9rem;
+  margin: 3px;
+}
+
+/* 列表样式 */
+.post-content ul {
+  padding-left: 1.5rem;
+}
+
+.post-content ul .md-list-item {
+  list-style-type: disc;
+  font-size: 27px !important;
+  color: #d32f2f;
+}
+
+.post-content ul ul .md-list-item {
+  list-style-type: circle;
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.post-content ul ul ul .md-list-item {
+  list-style-type: square;
+  color: #d32f2f;
+}
+
+/* 有序列表 */
+.post-content ol {
+  padding-left: 2.5rem;
+  margin-left: 0;
+  list-style-type: none;
+  counter-reset: ol-counter;
+}
+
+.post-content ol > li {
+  position: relative;
+  counter-increment: ol-counter;
+}
+
+.post-content ol > li::before {
+  content: counter(ol-counter) ")";
+  position: absolute;
+  left: -2.8rem;
+  width: 2.5rem;
+  text-align: right;
+  padding-right: 0.3rem;
+  font-weight: bold;
+  color: #000000;
+  font-size: 20px;
+  font-family: "Times New Roman", serif;
+}
+
+/* 引用块样式 */
+.post-content blockquote {
+  padding: 0.5rem 1rem;
+  border-left: 8px solid #d32f2f;
+  background-color: #fff5f5;
+  border-radius: 7px;
+  transition: box-shadow 0.3s ease, border-radius 0.3s ease, border-left 0.3s ease;
+}
+
+.post-content blockquote p {
+  margin: 0.1rem 0;
+}
+
+.post-content blockquote:hover {
+  border-left: 9px solid #b71c1c;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+}
+
+/* 横线样式 */
+.post-content hr {
+  position: relative;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: none;
+  border-top: 2px solid transparent;
+  background-color: #000000;
+  height: 3px;
+  overflow: visible;
+  color: #abb2bf;
+  opacity: 1;
+  border-radius: 0;
+}
+
+/* 表格样式 */
+.post-content table {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  border-collapse: separate;
+  overflow: hidden;
+}
+
+.post-content table th,
+.post-content table td {
+  padding: 10px 16px;
+  border: 0.5px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.post-content table th {
+  border-bottom: 1px solid #e0e0e0;
+  border-top: 0;
+}
+
+.post-content table thead {
+  background-color: #eff5f2;
+  color: #000000;
+}
+
+.post-content table td:hover {
+  background: rgba(239, 245, 242, 0.7);
+}
+
+/* 粗体样式 */
+.post-content strong {
+  font-weight: bold;
+  color: #d32f2f;
+  font-size: 1.05rem;
+  transition: font-size 0.3s ease, padding 0.3s ease;
+  display: inline-block;
+  margin: 0 2px;
+}
+
+.post-content strong:hover {
+  font-size: 1.1rem;
+  padding: 0 3px;
+}
+
+/* 斜体样式 */
+.post-content em {
+  background-color: inherit;
+  color: #000000;
+  transition: all 0.3s ease;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+.post-content em:hover {
+  color: #006400;
+  font-weight: 600;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+/* 下划线样式 */
+.post-content u {
+  background-color: inherit;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 2px solid rgb(9, 156, 70);
+  padding-bottom: 2.5px;
+  transition: all 0.3s ease;
+}
+
+/* 内联代码样式 - 与 spring.css 一致 */
+.post-content p code,
+.post-content li code {
+  background-color: #f9f2f4;
+  color: #c7254e;
+  font-family: "Fira Code", Consolas, "Lucida Console", "Courier", monospace, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 550;
+  margin: 0 2px;
+  padding: 3px 3px 1px;
+  border-radius: 7px;
+  transition: all 0.3s ease;
+}
+
+.post-content p code:hover,
+.post-content li code:hover {
+  background-color: #f0e6e9;
+  font-weight: 700;
+  padding: 3px 3px 3px;
+}
+
+/* 删除线样式 */
+.post-content del {
+  color: rgba(50, 100, 50, 0.5);
+  text-decoration: line-through;
+  text-decoration-color: rgba(76, 175, 80, 0.7);
+  text-decoration-thickness: 1.5px;
+  font-style: italic;
+  opacity: 0.8;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+/* 高亮样式 */
+.post-content mark {
+  font-weight: 500;
+  background-color: #aee6c3;
+  color: inherit;
+  margin: 0 2px;
+  padding: 3px 3px 2.5px;
+  border-radius: 0px;
+  transition: all 0.3s ease;
+}
+
+.post-content mark:hover {
+  border-radius: 7px;
+  background-color: rgba(174, 230, 195, 0.5);
+  padding: 3px 3px 4px;
+}
+
+/* 链接样式 */
+.post-content a {
+  background-color: inherit;
+  color: #0c8f94;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.post-content a:hover {
+  text-decoration: underline;
+  color: #02502a;
+}
+
+/* 图片样式 */
+.post-content img {
+  border-radius: 10px;
+  max-width: 100%;
+  display: block;
+  margin: 1em auto;
+  transition: transform 0.15s ease, border-radius 0.15s ease;
+}
+
+.post-content img:hover {
+  transform: scale(1.01);
+  border-radius: 0px;
+}
+
+/* 代码块样式由 base.css 提供（Mac 窗口风格） */
+
+/* 选中文本样式 */
+.post-content ::selection {
+  background-color: #def2e8;
+}
+
+/* ========================================
+   Python 语法高亮 - Dracula 主题
+   ======================================== */
+
+/* 关键字 (def, class, if, for, while, return, import, from, etc.) */
+.post-content .highlight .k,
+.post-content .highlight .kn,
+.post-content .highlight .kc,
+.post-content .highlight .kd,
+.post-content .highlight .kp,
+.post-content .highlight .kr,
+.post-content .highlight .kt {
+  color: #ff79c6; /* Pink */
+  font-weight: bold;
+}
+
+/* 字符串 */
+.post-content .highlight .s,
+.post-content .highlight .s1,
+.post-content .highlight .s2,
+.post-content .highlight .sa,
+.post-content .highlight .sb,
+.post-content .highlight .sc,
+.post-content .highlight .sd,
+.post-content .highlight .se {
+  color: #f1fa8c; /* Yellow */
+}
+
+/* 注释 */
+.post-content .highlight .c,
+.post-content .highlight .ch,
+.post-content .highlight .cm,
+.post-content .highlight .cp,
+.post-content .highlight .cpf,
+.post-content .highlight .c1 {
+  color: #6272a4; /* Blue Grey */
+  font-style: italic;
+}
+
+/* 函数名 */
+.post-content .highlight .nf,
+.post-content .highlight .fm {
+  color: #50fa7b; /* Green */
+  font-weight: bold;
+}
+
+/* 类名 */
+.post-content .highlight .nc {
+  color: #8be9fd; /* Cyan */
+  font-weight: bold;
+}
+
+/* 变量 */
+.post-content .highlight .n,
+.post-content .highlight .nv,
+.post-content .highlight .vc,
+.post-content .highlight .vg,
+.post-content .highlight .vi {
+  color: #f8f8f2; /* White */
+}
+
+/* 数字 */
+.post-content .highlight .m,
+.post-content .highlight .mf,
+.post-content .highlight .mh,
+.post-content .highlight .mi,
+.post-content .highlight .mo,
+.post-content .highlight .mb,
+.post-content .highlight .mx {
+  color: #bd93f9; /* Purple */
+}
+
+/* 操作符 */
+.post-content .highlight .o,
+.post-content .highlight .ow {
+  color: #ff79c6; /* Pink */
+}
+
+/* 装饰器 @ */
+.post-content .highlight .nd {
+  color: #ffb86c; /* Orange */
+}
+
+/* 内建函数 (print, len, range, etc.) */
+.post-content .highlight .nb {
+  color: #8be9fd; /* Cyan */
+  font-style: italic;
+}
+
+/* 异常 (Exception, Error, etc.) */
+.post-content .highlight .ne {
+  color: #ff5555; /* Red */
+}
+
+/* 布尔值 (True, False, None) */
+.post-content .highlight .kp {
+  color: #ffb86c; /* Orange */
+}

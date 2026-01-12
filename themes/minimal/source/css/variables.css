@@ -1,0 +1,103 @@
+/* ========================================
+   Minimal Theme - CSS Variables
+   Apple-inspired Design System
+   ======================================== */
+
+:root {
+  /* ==================== Colors - Apple Aesthetic ==================== */
+  /* Background Colors */
+  --color-bg: #F5F5F7;
+  --color-surface: #FFFFFF;
+  --color-glass: rgba(255, 255, 255, 0.8);
+
+  /* Text Colors */
+  --color-text: #1D1D1F;
+  --color-text-secondary: #86868B;
+  --color-text-tertiary: #A1A1A6;
+
+  /* Accent Colors - Premium Monochrome */
+  --color-primary: #2C2C2E;
+  --color-primary-hover: #1D1D1F;
+  --color-link: #2C2C2E;
+  --color-link-hover: #1D1D1F;
+
+  /* Border & Divider */
+  --color-border: rgba(0, 0, 0, 0.05);
+  --color-divider: rgba(0, 0, 0, 0.08);
+
+  /* Functional Colors */
+  --color-success: #34C759;
+  --color-warning: #FF9500;
+  --color-error: #FF3B30;
+
+  /* ==================== Typography - Apple System ==================== */
+  --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+               "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas,
+                "Courier New", monospace;
+
+  /* Font Sizes */
+  --font-size-base: 17px;
+  --font-size-h1: 48px;
+  --font-size-h2: 32px;
+  --font-size-h3: 24px;
+  --font-size-large: 19px;
+  --font-size-small: 15px;
+  --font-size-tiny: 13px;
+
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.7;
+
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.015em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.02em;
+
+  /* ==================== Spacing - Generous Whitespace ==================== */
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
+  --spacing-2xl: 64px;
+  --spacing-3xl: 96px;
+
+  /* ==================== Layout ==================== */
+  --sidebar-width: 300px;
+  --max-width: 1400px;
+  --header-height: 52px;
+  --content-max-width: 980px;
+
+  /* ==================== Border Radius - Smooth Corners ==================== */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* ==================== Shadows - Soft & Diffused ==================== */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.08);
+
+  /* ==================== Transitions ==================== */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ==================== Z-index ==================== */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal: 400;
+  --z-tooltip: 500;
+}

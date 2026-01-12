@@ -1,0 +1,46 @@
+{% extends '_post_layout.njk' %}
+
+{% block content %}
+<article class="post-container-full">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+
+    <div class="post-meta">
+      <div class="post-meta-item">
+        <span>📅</span>
+        <time datetime="{{ date(page.date, 'YYYY-MM-DD') }}">
+          {{ date(page.date, 'MMM DD, YYYY') }}
+        </time>
+      </div>
+      {% if page.categories.length > 0 %}
+      <div class="post-meta-item">
+        <span>📁</span>
+        <a href="{{ url_for(page.categories.first().path) }}">{{ page.categories.first().name }}</a>
+      </div>
+      {% endif %}
+      {% if page.updated %}
+      <div class="post-meta-item">
+        <span>✏️</span>
+        <time datetime="{{ date(page.updated, 'YYYY-MM-DD') }}">
+          Updated {{ date(page.updated, 'MMM DD, YYYY') }}
+        </time>
+      </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="post-content">
+    {{ page.content }}
+  </div>
+
+  {% if page.tags.length > 0 %}
+  <footer class="post-footer">
+    <div class="post-tags">
+      {% for tag in page.tags.toArray() %}
+      <a href="{{ url_for(tag.path) }}" class="post-tag">#{{ tag.name }}</a>
+      {% endfor %}
+    </div>
+  </footer>
+  {% endif %}
+</article>
+{% endblock %}
