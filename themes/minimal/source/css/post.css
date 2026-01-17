@@ -108,10 +108,27 @@
   margin-bottom: var(--spacing-sm);
 }
 
+.post-content h5 {
+  font-size: 18px;
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-sm);
+}
+
+.post-content h6 {
+  font-size: 17px;
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
 .post-content ul,
 .post-content ol {
   margin-bottom: var(--spacing-lg);
   padding-left: var(--spacing-xl);
+}
+
+/* Bold text color */
+.post-content strong {
+  color: #d32f2f;
 }
 
 .post-content li {
@@ -168,8 +185,8 @@
 /* Inline Code */
 .post-content p code,
 .post-content li code {
-  background: var(--color-bg);
-  color: var(--color-primary);
+  background: #f9f2f4;
+  color: #c7254e;
   padding: 2px 6px;
   border-radius: 4px;
   font-size: 0.9em;
