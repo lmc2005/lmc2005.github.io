@@ -2,7 +2,7 @@
 title: Big data final summary
 date: 2026-01-07 10:00:00
 categories:
-  - BIG DATA
+  - junior_first
 description: including many knowledage about big data foundation
 ---
 
